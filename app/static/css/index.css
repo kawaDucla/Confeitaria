@@ -6,28 +6,38 @@
 
 html, body {
     height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow-x: hidden;
+    font-family: "Playfair Display SC", serif;
 }
 
-.header {
-    width: 100%;
+.background {
+    position: relative;
+    height: 100vh;
+    background-image: url("../img/home.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.content {
+    position: relative;
+    z-index: 2;
 }
 
 .retangulo-rosa {
     height: 10vh;
     background-color: blueviolet;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 0 20px;
 }
 
-.header-left,
-.header-center,
-.header-right {
+.header-left, .header-center, .header-right {
     display: flex;
     align-items: center;
     flex: 1;
@@ -37,95 +47,52 @@ html, body {
     justify-content: center;
 }
 
-.header-left {
-    gap: 12px;
-}
-
 .header-right {
     justify-content: flex-end;
+    gap: 15px;
 }
 
 .titulo {
-    font-family: "Playfair Display SC", serif;
     font-size: 3rem;
     color: goldenrod;
 }
 
 .imagem-cupcake {
-    width: 80px;
-    height: 80px;
-    margin-top: -6px;
-
-    background-image: url("../img/cupcake-home.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    background: url("../img/cupcake-home.png") center/contain no-repeat;
 }
-.imagem-user {
-    width: 100px;
-    height: 100px;
-    margin-top: -6px;
-    background-image: url("../img/user-home.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
 
-    cursor: pointer;
-}
 .imagem-carrinho {
-    width: 125px;
-    height: 125px;
-    margin-top: -6px;
-
-    background-image: url("../img/carrinho-home.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    cursor: pointer;
+    width: 55px;
+    height: 55px;
+    background: url("../img/carrinho-home.png") center/contain no-repeat;
 }
 
+.imagem-user {
+    width: 50px;
+    height: 50px;
+    background: url("../img/user-home.png") center/contain no-repeat;
+}
 
 .barra-pesquisa {
     display: flex;
-    align-items: center;
-    margin-left: 15vh;
     width: 350px;
-    padding: 12px 20px;
-    border-radius: 20px;
-
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(4px);
+    padding: 10px 15px;
+    border-radius: 25px;
+    background-color: rgba(255,255,255,0.15);
 }
 
 .barra-pesquisa input {
     flex: 1;
-
     border: none;
-    outline: none;
-    background-color: transparent;
-
-    font-family: "Playfair Display SC", serif;
-    font-size: 0.95rem;
+    background: transparent;
     color: goldenrod;
-}
-
-.barra-pesquisa input::placeholder {
-    color: rgba(218, 165, 32, 0.7);
-    font-family: "Playfair Display SC", serif;
-}
-
-.barra-pesquisa input:focus {
-    caret-color: goldenrod;
 }
 
 .barra-pesquisa button {
     background: none;
     border: none;
-    cursor: pointer;
-
-    font-size: 1rem;
     color: goldenrod;
 }
 
@@ -134,34 +101,53 @@ html, body {
     background-color: goldenrod;
 }
 
-.imagem-home {
-    position: relative;
-    height: 85vh;
 
-    background-image: url("../img/home.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+.produtos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
-.imagem-home::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.45);
+.card {
+    background: white;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
 }
 
-@media (max-width: 768px) {
-    .titulo {
-        font-size: 2.2rem;
-    }
+.card:hover {
+    transform: translateY(-5px);
+}
 
-    .imagem-cupcake {
-        width: 45px;
-        height: 45px;
-    }
+.card-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
 
-    .barra-pesquisa {
-        width: 220px;
-    }
+.card h3, .card p {
+    text-align: center;
+}
+
+.card .preco {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.card button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 }
