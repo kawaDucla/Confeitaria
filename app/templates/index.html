@@ -5,16 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
 </head>
 <body>
-    <header>
-        <div class="retangulo-rosa"></div>
-        
-    </header>
-    <main class="imagem-home">
-        <h1 class="titulo">Confeitaria</h1>
-        <p class="subtitulo">Doces feitos com carinho</p>
-    </main>
+
+<header class="header">
+
+    <div class="retangulo-rosa">
+        <div class="header-left">
+            <div class="imagem-cupcake"></div>
+            <h1 class="titulo">Confeitaria</h1>
+        </div>
+        <div class="header-center">
+            <form class="barra-pesquisa" method="GET">
+                <input
+                    type="text"
+                    name="q"
+                    placeholder="Pesquisar doces..."
+                >
+                <button type="submit">🔍</button>
+            </form>
+        </div>
+        <div class="header-right"></div>
+            <div class="imagem-carrinho"></div>
+            <div class="imagem-user"></div>
+    </div>
+
+    <div class="retangulo-dourado"></div>
+
+</header>
+
+<main class="imagem-home"></main>
 
 </body>
 </html>

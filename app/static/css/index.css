@@ -1,70 +1,167 @@
-
-html, body {
+* {
     margin: 0;
     padding: 0;
-    height: 100%;
-    color: rgb(255, 255, 255);
-    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+.header {
+    width: 100%;
+}
 
 .retangulo-rosa {
-    height: 5vh;
-    width: 100vw;
+    height: 10vh;
     background-color: blueviolet;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
 }
 
+.header-left,
+.header-center,
+.header-right {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.header-center {
+    justify-content: center;
+}
+
+.header-left {
+    gap: 12px;
+}
+
+.header-right {
+    justify-content: flex-end;
+}
+
+.titulo {
+    font-family: "Playfair Display SC", serif;
+    font-size: 3rem;
+    color: goldenrod;
+}
+
+.imagem-cupcake {
+    width: 80px;
+    height: 80px;
+    margin-top: -6px;
+
+    background-image: url("../img/cupcake-home.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+.imagem-user {
+    width: 100px;
+    height: 100px;
+    margin-top: -6px;
+    background-image: url("../img/user-home.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    cursor: pointer;
+}
+.imagem-carrinho {
+    width: 125px;
+    height: 125px;
+    margin-top: -6px;
+
+    background-image: url("../img/carrinho-home.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    cursor: pointer;
+}
+
+
+.barra-pesquisa {
+    display: flex;
+    align-items: center;
+    margin-left: 15vh;
+    width: 350px;
+    padding: 12px 20px;
+    border-radius: 20px;
+
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+}
+
+.barra-pesquisa input {
+    flex: 1;
+
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    font-family: "Playfair Display SC", serif;
+    font-size: 0.95rem;
+    color: goldenrod;
+}
+
+.barra-pesquisa input::placeholder {
+    color: rgba(218, 165, 32, 0.7);
+    font-family: "Playfair Display SC", serif;
+}
+
+.barra-pesquisa input:focus {
+    caret-color: goldenrod;
+}
+
+.barra-pesquisa button {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    font-size: 1rem;
+    color: goldenrod;
+}
+
+.retangulo-dourado {
+    height: 5vh;
+    background-color: goldenrod;
+}
 
 .imagem-home {
     position: relative;
-    width: 100vw;
-    height: 95vh;
+    height: 85vh;
 
-    background-image: url("../img/imagem-de-fundo-home.avif");
+    background-image: url("../img/home.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
 }
-
 
 .imagem-home::before {
     content: "";
     position: absolute;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.45);
-    z-index: 1;
 }
-
-
-.titulo,
-.subtitulo {
-    position: relative;
-    z-index: 2;
-}
-
-.titulo {
-    font-size: 3rem;
-    margin: 0;
-}
-
-.subtitulo {
-    font-size: 1.2rem;
-    margin-top: 10px;
-}
-
 
 @media (max-width: 768px) {
     .titulo {
         font-size: 2.2rem;
     }
 
-    .subtitulo {
-        font-size: 1rem;
+    .imagem-cupcake {
+        width: 45px;
+        height: 45px;
+    }
+
+    .barra-pesquisa {
+        width: 220px;
     }
 }

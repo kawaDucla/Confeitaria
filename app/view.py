@@ -1,12 +1,7 @@
-
 from app import app
-from flask import render_template
+from flask import render_template, request
 
-
-# Tela inicial
-@app.route("/", methods=['GET', 'POST'])
-def homepage ():
-    return render_template("index.html")
-
-
-
+@app.route("/", methods=["GET"])
+def homepage():
+    termo = request.args.get("q")  
+    return render_template("index.html", termo=termo)
