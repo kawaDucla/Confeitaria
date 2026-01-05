@@ -5,26 +5,18 @@
     <meta charset="UTF-8">
     <title>Confeitaria</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
     <div class="background">
         <div class="overlay"></div>
-
         <div class="content">
-
             <header class="header">
-
                 <div class="retangulo-rosa">
-
                     <div class="header-left">
                         <div class="imagem-cupcake"></div>
                         <h1 class="titulo">Confeitaria</h1>
@@ -39,11 +31,10 @@
 
                     <div class="header-right">
                         <div class="imagem-carrinho"></div>
-                        <div class="imagem-user"></div>
+                        <!-- LINK PARA CADASTRO -->
+                        <a href="{{ url_for('cadastro') }}" class="imagem-user"></a>
                     </div>
-
                 </div>
-
                 <div class="retangulo-dourado"></div>
             </header>
 
@@ -56,22 +47,17 @@
                     {% endif %}
                     <h3>{{ produto.nome }}</h3>
                     <p>{{ produto.descricao }}</p>
-
                     {% if produto.tipo_sabor == "um" %}
                     <p><strong>Sabor:</strong> {{ produto.sabor_unico }}</p>
                     {% else %}
                     <p><strong>Sabores:</strong> {{ produto.sabores }}</p>
                     {% endif %}
-
-                    <p class="preco">R$ {{ "%.2f"|format(produto.valor) }}</p>
+                    <p class="preco">R$ {{ "%.2f"|format(produto.valor_venda) }}</p>
                     <button>{{ produto.frase_botao }}</button>
                 </div>
                 {% endfor %}
             </main>
-
         </div>
     </div>
-
 </body>
-
 </html>

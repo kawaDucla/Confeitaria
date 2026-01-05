@@ -4,6 +4,9 @@ import os
 
 app = Flask(__name__)
 
+# Secret key para sessões e flash (necessário para deletar produtos e mensagens)
+app.secret_key = "kawa"  # você pode trocar por algo mais seguro
+
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 # Configurações do banco

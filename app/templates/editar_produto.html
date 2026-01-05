@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Produto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+<div class="admin-container">
+    <h2>Editar Produto</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="form-produto">
+        <div class="form-group">
+            <label for="nome">Nome do produto:</label>
+            <input type="text" name="nome" id="nome" value="{{ produto.nome }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="preco_custo">Preço de custo:</label>
+            <input type="number" step="0.01" name="preco_custo" id="preco_custo" value="{{ produto.preco_custo }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="valor_venda">Valor de venda:</label>
+            <input type="number" step="0.01" name="valor_venda" id="valor_venda" value="{{ produto.valor_venda }}" required>
+        </div>
+
+        <div class="form-group full-width">
+            <label for="descricao">Descrição do produto:</label>
+            <textarea name="descricao" id="descricao" required>{{ produto.descricao }}</textarea>
+        </div>
+
+        <div class="form-group full-width">
+            <label>Tipo de sabor:</label>
+            <div class="tipo-sabor">
+                <label>
+                    <input type="radio" name="tipo_sabor" value="um" {% if produto.tipo_sabor=='um' %}checked{% endif %} onclick="toggle()"> Um sabor
+                </label>
+                <label>
+                    <input type="radio" name="tipo_sabor" value="varios" {% if produto.tipo_sabor=='varios' %}checked{% endif %} onclick="toggle()"> Vários sabores
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group" id="um">
+            <label for="sabor_unico">Sabor único:</label>
+            <input type="text" name="sabor_unico" id="sabor_unico" value="{{ produto.sabor_unico }}">
+        </div>
+
+        <div class="form-group" id="varios" style="display:none;">
+            <label for="sabores">Sabores separados por vírgula:</label>
+            <textarea name="sabores" id="sabores">{{ produto.sabores }}</textarea>
+        </div>
+
+        <div class="form-group full-width">
+            <label for="imagem">Imagem do produto:</label>
+            <input type="file" name="imagem" id="imagem">
+        </div>
+
+        <div class="form-group full-width">
+            <label for="frase_botao">Frase do botão:</label>
+            <input type="text" name="frase_botao" id="frase_botao" value="{{ produto.frase_botao }}" required>
+        </div>
+
+        <button type="submit">Atualizar Produto</button>
+    </form>
+</div>
+
+<script>
+function toggle() {
+    const tipo = document.querySelector('input[name="tipo_sabor"]:checked').value;
+    document.getElementById("um").style.display = tipo === "um" ? "block" : "none";
+    document.getElementById("varios").style.display = tipo === "varios" ? "block" : "none";
+}
+
+// Inicializa o toggle corretamente ao abrir a página
+window.onload = toggle;
+</script>
+</body>
+</html>

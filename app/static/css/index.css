@@ -43,64 +43,20 @@ html, body {
     flex: 1;
 }
 
-.header-center {
-    justify-content: center;
-}
+.header-center { justify-content: center; }
+.header-right { justify-content: flex-end; gap: 15px; }
 
-.header-right {
-    justify-content: flex-end;
-    gap: 15px;
-}
+.titulo { font-size: 2.5rem; color: goldenrod; }
 
-.titulo {
-    font-size: 3rem;
-    color: goldenrod;
-}
+.imagem-cupcake { width: 70px; height: 70px; background: url("../img/cupcake-home.png") center/contain no-repeat; }
+.imagem-carrinho { width: 55px; height: 55px; background: url("../img/carrinho-home.png") center/contain no-repeat; }
+.imagem-user { width: 50px; height: 50px; background: url("../img/user-home.png") center/contain no-repeat; }
 
-.imagem-cupcake {
-    width: 70px;
-    height: 70px;
-    background: url("../img/cupcake-home.png") center/contain no-repeat;
-}
+.barra-pesquisa { display: flex; width: 350px; padding: 10px 15px; border-radius: 25px; background-color: rgba(255,255,255,0.15); }
+.barra-pesquisa input { flex: 1; border: none; background: transparent; color: goldenrod; }
+.barra-pesquisa button { background: none; border: none; color: goldenrod; padding: 8px; }
 
-.imagem-carrinho {
-    width: 55px;
-    height: 55px;
-    background: url("../img/carrinho-home.png") center/contain no-repeat;
-}
-
-.imagem-user {
-    width: 50px;
-    height: 50px;
-    background: url("../img/user-home.png") center/contain no-repeat;
-}
-
-.barra-pesquisa {
-    display: flex;
-    width: 350px;
-    padding: 10px 15px;
-    border-radius: 25px;
-    background-color: rgba(255,255,255,0.15);
-}
-
-.barra-pesquisa input {
-    flex: 1;
-    border: none;
-    background: transparent;
-    color: goldenrod;
-}
-
-.barra-pesquisa button {
-    background: none;
-    border: none;
-    color: goldenrod;
-}
-
-.retangulo-dourado {
-    height: 5vh;
-    background-color: goldenrod;
-}
-
+.retangulo-dourado { height: 5vh; background-color: goldenrod; }
 
 .produtos-container {
     display: flex;
@@ -121,33 +77,28 @@ html, body {
     transition: transform 0.2s;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.card:hover { transform: translateY(-5px); }
+
+.card-img { width: 200px; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
+.card h3, .card p { text-align: center; }
+.card p.preco { font-weight: bold; margin-top: 10px; }
+.card button { margin-top: 15px; padding: 10px 20px; background-color: blueviolet; color: white; border: none; border-radius: 6px; cursor: pointer; }
+
+.header-right a {
+    display: inline-block;
+    text-decoration: none;
 }
 
-.card-img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
+.imagem-user {
+    width: 50px;
+    height: 50px;
+    background: url("../img/user-home.png") center/contain no-repeat;
+    cursor: pointer; /* indica que é clicável */
+    border-radius: 50%; /* opcional: deixa a imagem redonda */
+    transition: transform 0.2s;
 }
 
-.card h3, .card p {
-    text-align: center;
+.imagem-user:hover {
+    transform: scale(1.1); /* efeito hover */
 }
 
-.card .preco {
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.card button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: blueviolet;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
