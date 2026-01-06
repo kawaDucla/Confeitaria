@@ -13,33 +13,28 @@
         <h2>Cadastro de Produtos</h2>
 
         <form method="POST" enctype="multipart/form-data" class="form-produto">
-            <!-- Nome do produto -->
             <div class="form-group">
                 <label for="nome">Nome do produto:</label>
                 <input type="text" name="nome" id="nome" placeholder="Nome do produto" required>
             </div>
 
-            <!-- Preço de custo -->
             <div class="form-group">
                 <label for="preco_custo">Preço de custo:</label>
                 <input type="number" step="0.01" name="preco_custo" id="preco_custo" placeholder="Preço de custo"
                     required>
             </div>
 
-            <!-- Valor de venda -->
             <div class="form-group">
                 <label for="valor_venda">Valor de venda:</label>
                 <input type="number" step="0.01" name="valor_venda" id="valor_venda" placeholder="Valor de venda"
                     required>
             </div>
 
-            <!-- Descrição -->
             <div class="form-group full-width">
                 <label for="descricao">Descrição do produto:</label>
                 <textarea name="descricao" id="descricao" placeholder="Descrição do produto" required></textarea>
             </div>
 
-            <!-- Tipo de sabor -->
             <div class="form-group full-width">
                 <label>Tipo de sabor:</label>
                 <div class="tipo-sabor">
@@ -52,25 +47,21 @@
                 </div>
             </div>
 
-            <!-- Sabor único -->
             <div class="form-group" id="um">
                 <label for="sabor_unico">Sabor único:</label>
                 <input type="text" name="sabor_unico" id="sabor_unico" placeholder="Sabor único">
             </div>
 
-            <!-- Vários sabores -->
             <div class="form-group" id="varios" style="display:none;">
                 <label for="sabores">Sabores separados por vírgula:</label>
                 <textarea name="sabores" id="sabores" placeholder="Sabores separados por vírgula"></textarea>
             </div>
 
-            <!-- Imagem -->
             <div class="form-group full-width">
                 <label for="imagem">Imagem do produto:</label>
                 <input type="file" name="imagem" id="imagem" accept="image/*">
             </div>
 
-            <!-- Frase do botão -->
             <div class="form-group full-width">
                 <label for="frase_botao">Frase do botão:</label>
                 <input type="text" name="frase_botao" id="frase_botao" placeholder="Frase do botão" required>
@@ -80,7 +71,6 @@
         </form>
 
         <h2>Produtos Cadastrados</h2>
-        <!-- Dentro do bloco de produtos cadastrados -->
         <div class="produtos-cadastrados">
             {% for produto in produtos %}
             <div class="produto-card">
@@ -112,6 +102,33 @@
             {% endfor %}
         </div>
     </div>
+    <h2>Usuários Cadastrados</h2>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Foto</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
+            <th>Ações</th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>
+                <img src="{{ url_for('static', filename='img/usuarios/' + usuario.imagem) }}" width="50" height="50"
+                    style="border-radius:50%;">
+            </td>
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.cpf if usuario.cpf else '-' }}</td>
+            <td>
+                <a href="{{ url_for('editar_usuario', id=usuario.id) }}">Editar</a> |
+                <a href="{{ url_for('deletar_usuario', id=usuario.id) }}"
+                    onclick="return confirm('Deseja realmente excluir este usuário?');">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
 
     <script>
         function toggle() {

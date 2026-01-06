@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
+</head>
+<body>
+<div class="cadastro-container">
+    <h2>Perfil do Usuário</h2>
+    <div style="text-align:center; margin-bottom:20px;">
+        <img src="{{ url_for('static', filename='img/usuarios/' + usuario.imagem) }}" 
+             alt="Avatar" class="preview-img" style="width:100px; height:100px;">
+    </div>
+    <p><strong>Nome:</strong> {{ usuario.nome }}</p>
+    <p><strong>Email:</strong> {{ usuario.email }}</p>
+    <p><strong>CPF:</strong> {{ usuario.cpf if usuario.cpf else 'Não informado' }}</p>
+    <p><strong>Endereço:</strong> {{ usuario.rua }}, {{ usuario.numero }}, {{ usuario.bairro }}, {{ usuario.cidade }}</p>
+    <p><strong>CEP:</strong> {{ usuario.cep }}</p>
+
+    <button onclick="confirmLogout()">Sair da conta</button>
+</div>
+
+<script>
+function confirmLogout() {
+    if(confirm("Tem certeza que deseja sair da conta?")) {
+        window.location.href = "{{ url_for('logout') }}";
+    }
+}
+</script>
+</body>
+</html>

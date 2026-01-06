@@ -5,16 +5,23 @@
     <meta charset="UTF-8">
     <title>Confeitaria</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+    <!-- Fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <div class="background">
         <div class="overlay"></div>
         <div class="content">
+
+            <!-- HEADER -->
             <header class="header">
                 <div class="retangulo-rosa">
                     <div class="header-left">
@@ -22,28 +29,49 @@
                         <h1 class="titulo">Confeitaria</h1>
                     </div>
 
-                    <div class="header-center">
-                        <form class="barra-pesquisa">
-                            <input type="text" placeholder="Pesquisar doces...">
-                            <button>🔍</button>
-                        </form>
-                    </div>
+                    <!-- Barra de pesquisa como FORM -->
+                    <form class="barra-pesquisa" action="{{ url_for('homepage') }}" method="GET">
+                        <input type="text" name="q" id="search-input" placeholder="Pesquisar doces..."
+                            value="{{ request.args.get('q', '') }}">
+                        <button type="submit">🔍</button>
+                    </form>
 
                     <div class="header-right">
-                        <div class="imagem-carrinho"></div>
-                        <!-- LINK PARA CADASTRO -->
-                        <a href="{{ url_for('cadastro') }}" class="imagem-user"></a>
+                        <div class="usuario-box">
+                            {% if usuario %}
+                            <a href="{{ url_for('perfil') }}">
+                                <img src="{{ url_for('static', filename='img/usuarios/' + usuario.imagem) }}"
+                                    alt="Perfil" class="imagem-user">
+                                <span class="status-bola logged-in"></span>
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('cadastro') }}">
+                                <img src="{{ url_for('static', filename='img/user-home.png') }}" alt="Cadastrar"
+                                    class="imagem-user">
+                                <span class="status-bola"></span>
+                            </a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-                <div class="retangulo-dourado"></div>
             </header>
 
-            <main class="produtos-container">
+            <!-- ALERTA: Nenhum produto encontrado -->
+            {% if request.args.get('q') and produtos|length == 0 %}
+            <script>
+                alert('Nenhum produto encontrado para "{{ request.args.get("q") }}"');
+            </script>
+            {% endif %}
+
+            <!-- PRODUTOS -->
+            <main class="produtos-container" id="produtos-container">
                 {% for produto in produtos %}
                 <div class="card">
                     {% if produto.imagem %}
-                    <img src="{{ url_for('static', filename='img/produtos/' + produto.imagem) }}" class="card-img"
+                    <img src="{{ url_for('static', filename='img/produtos/' ~ produto.imagem) }}" class="card-img"
                         alt="{{ produto.nome }}">
+                    {% else %}
+                    <div class="sem-imagem">Sem imagem</div>
                     {% endif %}
                     <h3>{{ produto.nome }}</h3>
                     <p>{{ produto.descricao }}</p>
@@ -57,7 +85,45 @@
                 </div>
                 {% endfor %}
             </main>
+
         </div>
     </div>
+
+    <!-- JS busca inteligente -->
+    <script>
+        const input = document.getElementById('search-input');
+        const container = document.getElementById('produtos-container');
+
+        input.addEventListener('input', async () => {
+            const termo = input.value.trim();
+
+            if (!termo) {
+                location.reload(); // mostra todos os produtos
+                return;
+            }
+
+            const response = await fetch(`/buscar_produtos?q=${encodeURIComponent(termo)}`);
+            const produtos = await response.json();
+
+            container.innerHTML = ''; // limpa cards
+
+            // NÃO alert aqui, só atualiza os cards
+            produtos.forEach(p => {
+                const div = document.createElement('div');
+                div.classList.add('card');
+
+                div.innerHTML = `
+                    ${p.imagem ? `<img src="/static/img/produtos/${p.imagem}" class="card-img" alt="${p.nome}">` : `<div class="sem-imagem">Sem imagem</div>`}
+                    <h3>${p.nome}</h3>
+                    <p>${p.descricao}</p>
+                    ${p.sabores_unicos ? `<p><strong>Sabor:</strong> ${p.sabores_unicos}</p>` : ''}
+                    <p class="preco">R$ ${p.valor_venda.toFixed(2)}</p>
+                    <button>${p.frase_botao || "Comprar"}</button>
+                `;
+                container.appendChild(div);
+            });
+        });
+    </script>
 </body>
+
 </html>
