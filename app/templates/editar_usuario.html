@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuário</title>
+</head>
+<body>
+
+<h2>Editar Usuário</h2>
+
+<form method="POST">
+    <label>Nome:</label><br>
+    <input type="text" name="nome" value="{{ usuario.nome }}" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" value="{{ usuario.email }}" required><br><br>
+
+    <label>CPF:</label><br>
+    <input type="text" name="cpf" value="{{ usuario.cpf }}"><br><br>
+
+    <label>CEP:</label><br>
+    <input type="text" name="cep" value="{{ usuario.cep }}"><br><br>
+
+    <label>Rua:</label><br>
+    <input type="text" name="rua" value="{{ usuario.rua }}"><br><br>
+
+    <label>Bairro:</label><br>
+    <input type="text" name="bairro" value="{{ usuario.bairro }}"><br><br>
+
+    <label>Cidade:</label><br>
+    <input type="text" name="cidade" value="{{ usuario.cidade }}"><br><br>
+
+    <label>Complemento:</label><br>
+    <input type="text" name="complemento" value="{{ usuario.complemento }}"><br><br>
+
+    <button type="submit">Salvar</button>
+</form>
+
+</body>
+</html>

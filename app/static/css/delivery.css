@@ -1,4 +1,4 @@
-/* Reset básico */
+/* ================= RESET ================= */
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +10,7 @@ html, body {
     font-family: "Playfair Display SC", serif;
 }
 
-/* Background */
+/* ================= BACKGROUND ================= */
 .background {
     position: relative;
     min-height: 100vh;
@@ -30,7 +30,7 @@ html, body {
     z-index: 2;
 }
 
-/* Header */
+/* ================= HEADER ================= */
 .retangulo-rosa {
     height: 10vh;
     background-color: blueviolet;
@@ -40,20 +40,44 @@ html, body {
     padding: 0 20px;
 }
 
-.header-left, .header-center, .header-right {
+.header-left,
+.header-center,
+.header-right {
     display: flex;
     align-items: center;
     flex: 1;
 }
 
-.header-center { justify-content: center; }
-.header-right { justify-content: flex-end; gap: 15px; }
+.header-center {
+    justify-content: center;
+}
 
-.titulo { font-size: 2.5rem; color: goldenrod; }
+.header-right {
+    justify-content: flex-end;
+    gap: 15px;
+}
 
-.imagem-cupcake { width: 70px; height: 70px; background: url("../img/cupcake-home.png") center/contain no-repeat; }
+.titulo {
+    font-size: 2.5rem;
+    color: goldenrod;
+}
 
-/* Usuário */
+.retangulo-dourado{
+    height: 5vh;
+    background-color: goldenrod;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+/* ================= IMAGENS ================= */
+.imagem-cupcake {
+    width: 70px;
+    height: 70px;
+    background: url("../img/cupcake-home.png") center/contain no-repeat;
+}
+
+/* ================= USUÁRIO ================= */
 .usuario-box {
     display: flex;
     align-items: center;
@@ -61,7 +85,7 @@ html, body {
     position: relative;
 }
 
-.imagem-user {  
+.imagem-user {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -72,7 +96,9 @@ html, body {
     transition: transform 0.2s;
 }
 
-.imagem-user:hover { transform: scale(1.1); }
+.imagem-user:hover {
+    transform: scale(1.1);
+}
 
 .status-bola {
     position: absolute;
@@ -85,13 +111,17 @@ html, body {
     border: 2px solid white;
 }
 
-.status-bola.logged-in { background-color: green; }
+.status-bola.logged-in {
+    background-color: green;
+}
 
-/* Barra de pesquisa */
+/* ================= BARRA DE PESQUISA ================= */
 .barra-pesquisa {
     display: flex;
+    align-items: center;
+    gap: 10px;
     width: 350px;
-    padding: 10px 15px;
+    padding: 8px 15px;
     border-radius: 25px;
     background-color: rgba(255,255,255,0.15);
 }
@@ -100,11 +130,12 @@ html, body {
     flex: 1;
     border: none;
     background: transparent;
-    color: white;
+    color: goldenrod;
+    font-size: 1rem;
 }
 
 .barra-pesquisa input::placeholder {
-    color: #ff69b4;
+    color: goldenrod;
     opacity: 1;
 }
 
@@ -112,7 +143,21 @@ html, body {
     outline: none;
 }
 
-/* Produtos */
+/* BOTÃO DA LUPA (SEM FUNDO) */
+.barra-pesquisa button {
+    background: transparent;
+    border: none;
+    color: goldenrod;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.barra-pesquisa button:hover {
+    transform: scale(1.15);
+}
+
+/* ================= PRODUTOS ================= */
 .produtos-container {
     display: flex;
     flex-wrap: wrap;
@@ -133,11 +178,29 @@ html, body {
     transition: transform 0.2s;
 }
 
-.card:hover { transform: translateY(-5px); }
+.card:hover {
+    transform: translateY(-5px);
+}
 
-.card-img { width: 200px; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
-.card h3, .card p { text-align: center; }
-.card p.preco { font-weight: bold; margin-top: 10px; }
+.card-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.card h3,
+.card p {
+    text-align: center;
+}
+
+.card p.preco {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* ================= BOTÃO DO CARD ================= */
 .card button {
     margin-top: 15px;
     padding: 10px 20px;
@@ -146,5 +209,9 @@ html, body {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.2s;
 }
-.card button:hover { background-color: darkviolet; }
+
+.card button:hover {
+    background-color: darkviolet;
+}

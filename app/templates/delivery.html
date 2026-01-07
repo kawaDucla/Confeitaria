@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/delivery.css') }}">
 
     <!-- Fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,10 +29,15 @@
                         <h1 class="titulo">Confeitaria</h1>
                     </div>
 
-                    <!-- Barra de pesquisa como FORM -->
-                    <form class="barra-pesquisa" action="{{ url_for('homepage') }}" method="GET">
-                        <input type="text" name="q" id="search-input" placeholder="Pesquisar doces..."
-                            value="{{ request.args.get('q', '') }}">
+                    <!-- Barra de pesquisa -->
+                    <form class="barra-pesquisa" action="{{ url_for('delivery') }}" method="GET">
+                        <input
+                            type="text"
+                            name="q"
+                            id="search-input"
+                            placeholder="Qual é o tamanho da sua fome?"
+                            value="{{ request.args.get('q', '') }}"
+                        >
                         <button type="submit">🔍</button>
                     </form>
 
@@ -46,17 +51,18 @@
                             </a>
                             {% else %}
                             <a href="{{ url_for('cadastro') }}">
-                                <img src="{{ url_for('static', filename='img/user-home.png') }}" alt="Cadastrar"
-                                    class="imagem-user">
+                                <img src="{{ url_for('static', filename='img/user-home.png') }}"
+                                    alt="Cadastrar" class="imagem-user">
                                 <span class="status-bola"></span>
                             </a>
                             {% endif %}
                         </div>
                     </div>
                 </div>
+                <div class="retangulo-dourado"></div>
             </header>
 
-            <!-- ALERTA: Nenhum produto encontrado -->
+            <!-- ALERTA -->
             {% if request.args.get('q') and produtos|length == 0 %}
             <script>
                 alert('Nenhum produto encontrado para "{{ request.args.get("q") }}"');
@@ -68,18 +74,21 @@
                 {% for produto in produtos %}
                 <div class="card">
                     {% if produto.imagem %}
-                    <img src="{{ url_for('static', filename='img/produtos/' ~ produto.imagem) }}" class="card-img"
-                        alt="{{ produto.nome }}">
+                    <img src="{{ url_for('static', filename='img/produtos/' ~ produto.imagem) }}"
+                         class="card-img" alt="{{ produto.nome }}">
                     {% else %}
                     <div class="sem-imagem">Sem imagem</div>
                     {% endif %}
+
                     <h3>{{ produto.nome }}</h3>
                     <p>{{ produto.descricao }}</p>
+
                     {% if produto.tipo_sabor == "um" %}
-                    <p><strong>Sabor:</strong> {{ produto.sabor_unico }}</p>
+                        <p><strong>Sabor:</strong> {{ produto.sabor_unico }}</p>
                     {% else %}
-                    <p><strong>Sabores:</strong> {{ produto.sabores }}</p>
+                        <p><strong>Sabores:</strong> {{ produto.sabores }}</p>
                     {% endif %}
+
                     <p class="preco">R$ {{ "%.2f"|format(produto.valor_venda) }}</p>
                     <button>{{ produto.frase_botao }}</button>
                 </div>
@@ -98,32 +107,33 @@
             const termo = input.value.trim();
 
             if (!termo) {
-                location.reload(); // mostra todos os produtos
+                location.reload();
                 return;
             }
 
             const response = await fetch(`/buscar_produtos?q=${encodeURIComponent(termo)}`);
             const produtos = await response.json();
 
-            container.innerHTML = ''; // limpa cards
+            container.innerHTML = '';
 
-            // NÃO alert aqui, só atualiza os cards
             produtos.forEach(p => {
                 const div = document.createElement('div');
                 div.classList.add('card');
 
                 div.innerHTML = `
-                    ${p.imagem ? `<img src="/static/img/produtos/${p.imagem}" class="card-img" alt="${p.nome}">` : `<div class="sem-imagem">Sem imagem</div>`}
+                    ${p.imagem
+                        ? `<img src="/static/img/produtos/${p.imagem}" class="card-img">`
+                        : `<div class="sem-imagem">Sem imagem</div>`
+                    }
                     <h3>${p.nome}</h3>
                     <p>${p.descricao}</p>
-                    ${p.sabores_unicos ? `<p><strong>Sabor:</strong> ${p.sabores_unicos}</p>` : ''}
                     <p class="preco">R$ ${p.valor_venda.toFixed(2)}</p>
-                    <button>${p.frase_botao || "Comprar"}</button>
+                    <button>Comprar</button>
                 `;
+
                 container.appendChild(div);
             });
         });
     </script>
 </body>
-
 </html>
