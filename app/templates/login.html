@@ -9,13 +9,19 @@
 
 <body>
     <div class="container">
+
+
         <form method="POST" class="login">
             <input name="email" placeholder="Email">
             <input name="senha" type="password" placeholder="Senha">
             <button>Entrar</button>
+            {% for categoria, mensagem in get_flashed_messages(with_categories=true) %}
+            <div class="flash {{ categoria }}">
+                {{ mensagem }}
+            </div>
+            {% endfor %}
         </form>
     </div>
 </body>
-
 
 </html>

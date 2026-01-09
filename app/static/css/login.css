@@ -19,3 +19,14 @@ body {
     align-items: center;
 }
 
+.flash {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.flash.danger {
+  background: #f8d7da;
+  color: #721c24;
+}

@@ -5,9 +5,8 @@ from app.models import Produto, Usuario
 import os
 import re
 
-# =========================
-# HOME (INSTITUCIONAL)
-# =========================
+
+# HOME 
 @app.route('/', methods=['GET'])
 def home():
     usuario = None
@@ -17,9 +16,9 @@ def home():
     return render_template('home.html', usuario=usuario)
 
 
-# =========================
+
 # ACESSO AO DELIVERY
-# =========================
+
 @app.route('/acesso-delivery')
 def acesso_delivery():
     if 'usuario_id' not in session:
@@ -29,9 +28,9 @@ def acesso_delivery():
     return redirect(url_for('delivery'))
 
 
-# =========================
+
 # DELIVERY (CARDÁPIO)
-# =========================
+
 @app.route('/delivery', methods=['GET'])
 def delivery():
     usuario = None
@@ -47,9 +46,9 @@ def delivery():
     )
 
 
-# =========================
+
 # BUSCA DE PRODUTOS (AJAX)
-# =========================
+
 @app.route('/buscar_produtos')
 def buscar_produtos():
     termo = request.args.get('q', '').strip()
@@ -73,9 +72,9 @@ def buscar_produtos():
     ])
 
 
-# =========================
+
 # ADMIN
-# =========================
+
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     if request.method == 'POST':
@@ -120,9 +119,9 @@ def admin():
     return render_template('admin.html', produtos=produtos, usuarios=usuarios)
 
 
-# =========================
+
 # PRODUTO (ADMIN)
-# =========================
+
 @app.route('/produto/deletar/<int:id>')
 def deletar_produto(id):
     produto = Produto.query.get_or_404(id)
@@ -172,9 +171,9 @@ def editar_produto(id):
     return render_template('editar_produto.html', produto=produto)
 
 
-# =========================
+
 # CADASTRO
-# =========================
+
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     if request.method == 'POST':
@@ -241,9 +240,9 @@ def cadastro():
     return render_template('cadastro.html')
 
 
-# =========================
+
 # LOGIN / LOGOUT
-# =========================
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -268,9 +267,9 @@ def logout():
     return redirect(url_for('home'))
 
 
-# =========================
+
 # PERFIL
-# =========================
+
 @app.route('/perfil')
 def perfil():
     if 'usuario_id' not in session:
@@ -281,9 +280,9 @@ def perfil():
     return render_template('perfil.html', usuario=usuario)
 
 
-# =========================
+
 # USUÁRIOS (ADMIN)
-# =========================
+
 @app.route('/usuario/deletar/<int:id>')
 def deletar_usuario(id):
     usuario = Usuario.query.get_or_404(id)
@@ -297,12 +296,9 @@ def deletar_usuario(id):
     db.session.commit()
     flash("Usuário deletado com sucesso!", "success")
     return redirect(url_for('admin'))
-# =========================
+
 # EDITAR USUÁRIO (ADMIN)
-# =========================
-# =========================
-# EDITAR USUÁRIO (ADMIN)
-# =========================
+
 @app.route('/usuario/editar/<int:id>', methods=['GET', 'POST'])
 def editar_usuario(id):
     usuario = Usuario.query.get_or_404(id)
@@ -325,9 +321,9 @@ def editar_usuario(id):
 
 
 
-# =========================
+
 # VALIDA CPF
-# =========================
+
 def validar_cpf(cpf: str) -> bool:
     cpf = re.sub(r'\D', '', cpf)
     if len(cpf) != 11 or cpf == cpf[0] * 11:

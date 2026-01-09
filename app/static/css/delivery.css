@@ -1,4 +1,4 @@
-/* ================= RESET ================= */
+/* RESET  */
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +10,7 @@ html, body {
     font-family: "Playfair Display SC", serif;
 }
 
-/* ================= BACKGROUND ================= */
+/*  BACKGROUND  */
 .background {
     position: relative;
     min-height: 100vh;
@@ -30,7 +30,7 @@ html, body {
     z-index: 2;
 }
 
-/* ================= HEADER ================= */
+/* HEADER*/
 .retangulo-rosa {
     height: 10vh;
     background-color: blueviolet;
@@ -70,14 +70,14 @@ html, body {
     justify-content: space-between;
     padding: 0 20px;
 }
-/* ================= IMAGENS ================= */
+/* IMAGENS  */
 .imagem-cupcake {
     width: 70px;
     height: 70px;
     background: url("../img/cupcake-home.png") center/contain no-repeat;
 }
 
-/* ================= USUÁRIO ================= */
+/*USUÁRIO */
 .usuario-box {
     display: flex;
     align-items: center;
@@ -115,7 +115,7 @@ html, body {
     background-color: green;
 }
 
-/* ================= BARRA DE PESQUISA ================= */
+/*  BARRA DE PESQUISA  */
 .barra-pesquisa {
     display: flex;
     align-items: center;
@@ -143,7 +143,7 @@ html, body {
     outline: none;
 }
 
-/* BOTÃO DA LUPA (SEM FUNDO) */
+/* BOTÃO DA LUPA */
 .barra-pesquisa button {
     background: transparent;
     border: none;
@@ -157,17 +157,18 @@ html, body {
     transform: scale(1.15);
 }
 
-/* ================= PRODUTOS ================= */
+/*  PRODUTOS */
 .produtos-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 10vh;
     justify-content: center;
-    padding: 20px;
+    padding: 15vh;
 }
 
 .card {
-    background: white;
+    background: blueviolet;
+    opacity: 95%;
     padding: 20px;
     width: 250px;
     border-radius: 10px;
@@ -192,6 +193,7 @@ html, body {
 
 .card h3,
 .card p {
+    color: goldenrod;
     text-align: center;
 }
 
@@ -204,7 +206,7 @@ html, body {
 .card button {
     margin-top: 15px;
     padding: 10px 20px;
-    background-color: blueviolet;
+    background-color: goldenrod;
     color: white;
     border: none;
     border-radius: 6px;
