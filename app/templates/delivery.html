@@ -31,13 +31,8 @@
 
                     <!-- Barra de pesquisa -->
                     <form class="barra-pesquisa" action="{{ url_for('delivery') }}" method="GET">
-                        <input
-                            type="text"
-                            name="q"
-                            id="search-input"
-                            placeholder="Qual é o tamanho da sua fome?"
-                            value="{{ request.args.get('q', '') }}"
-                        >
+                        <input type="text" name="q" id="search-input" placeholder="Qual é o tamanho da sua fome?"
+                            value="{{ request.args.get('q', '') }}">
                         <button type="submit">🔍</button>
                     </form>
 
@@ -51,8 +46,8 @@
                             </a>
                             {% else %}
                             <a href="{{ url_for('cadastro') }}">
-                                <img src="{{ url_for('static', filename='img/user-home.png') }}"
-                                    alt="Cadastrar" class="imagem-user">
+                                <img src="{{ url_for('static', filename='img/user-home.png') }}" alt="Cadastrar"
+                                    class="imagem-user">
                                 <span class="status-bola"></span>
                             </a>
                             {% endif %}
@@ -73,25 +68,51 @@
             <main class="produtos-container" id="produtos-container">
                 {% for produto in produtos %}
                 <div class="card">
+
+                    <!-- Favoritar (opcional) -->
+                    <div class="card-top">
+                        <span class="fav">♡</span>
+                    </div>
+
+                    <!-- Imagem do produto -->
                     {% if produto.imagem %}
                     <img src="{{ url_for('static', filename='img/produtos/' ~ produto.imagem) }}"
-                         class="card-img" alt="{{ produto.nome }}">
+                        alt="{{ produto.nome }}" class="card-img">
                     {% else %}
                     <div class="sem-imagem">Sem imagem</div>
                     {% endif %}
 
-                    <h3>{{ produto.nome }}</h3>
-                    <p>{{ produto.descricao }}</p>
+                    <!-- Nome -->
+                    <h3 class="nome-produto">{{ produto.nome }}</h3>
 
-                    {% if produto.tipo_sabor == "um" %}
-                        <p><strong>Sabor:</strong> {{ produto.sabor_unico }}</p>
-                    {% else %}
-                        <p><strong>Sabores:</strong> {{ produto.sabores }}</p>
-                    {% endif %}
+                    <!-- ⭐ Avaliação -->
+                    <div class="avaliacao">
+                        {% for i in range(1, 6) %}
+                        {% if i <= produto.media_avaliacao %} <span class="estrela cheia">★</span>
+                            {% else %}
+                            <span class="estrela">★</span>
+                            {% endif %}
+                            {% endfor %}
+                            <small class="qtd-avaliacoes">
+                                ({{ produto.total_avaliacoes }})
+                            </small>
+                    </div>
 
-                    <p class="preco">R$ {{ "%.2f"|format(produto.valor_venda) }}</p>
-                    <button>{{ produto.frase_botao }}</button>
+                    <!-- Preço -->
+                    <p class="preco">
+                        R$ {{ "%.2f"|format(produto.valor_venda) }}
+                    </p>
+
+                    <!-- Botão Carrinho -->
+                    <form action="{{ url_for('adicionar_carrinho', id=produto.id) }}" method="POST"
+                        class="form-carrinho">
+                        <button type="submit" class="btn-carrinho">
+                            Adicionar
+                        </button>
+                    </form>
+
                 </div>
+
                 {% endfor %}
             </main>
 
@@ -136,4 +157,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -217,3 +217,36 @@ html, body {
 .card button:hover {
     background-color: darkviolet;
 }
+.avaliacao {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 8px 0;
+}
+
+.estrela {
+    color: #ccc;
+    font-size: 18px;
+}
+
+.estrela.cheia {
+    color: gold;
+}
+
+.card-top {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.fav {
+    cursor: pointer;
+    font-size: 18px;
+    color: #ddd;
+}
+
+.btn-carrinho {
+    background-color: #b30000;
+    color: white;
+    width: 100%;
+}

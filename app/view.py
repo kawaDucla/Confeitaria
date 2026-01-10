@@ -337,3 +337,38 @@ def validar_cpf(cpf: str) -> bool:
     dv1 = calc_dv(cpf[:9])
     dv2 = calc_dv(cpf[:9] + str(dv1))
     return cpf[-2:] == f"{dv1}{dv2}"
+
+@app.route('/carrinho/adicionar/<int:id>', methods=['POST'])
+def adicionar_carrinho(id):
+    carrinho = session.get('carrinho', [])
+    carrinho.append(id)
+    session['carrinho'] = carrinho
+
+    flash("Produto adicionado ao carrinho!", "success")
+    return redirect(url_for('delivery'))
+
+@app.route('/finalizar-compra')
+def finalizar_compra():
+    session.pop('carrinho', None)
+    return redirect(url_for('avaliar_produtos'))
+
+@app.route('/avaliar', methods=['GET', 'POST'])
+def avaliar_produtos():
+    if request.method == 'POST':
+        for key, value in request.form.items():
+            if key.startswith('produto_'):
+                produto_id = int(key.split('_')[1])
+                nota = int(value)
+
+                produto = Produto.query.get(produto_id)
+                produto.total_avaliacoes += 1
+                produto.media_avaliacao = (
+                    (produto.media_avaliacao + nota) / 2
+                )
+
+        db.session.commit()
+        flash("Obrigado pela sua avaliação! ⭐", "success")
+        return redirect(url_for('delivery'))
+
+    produtos = Produto.query.all()
+    return render_template('avaliar.html', produtos=produtos)

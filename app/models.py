@@ -15,7 +15,8 @@ class Produto(db.Model):
     sabores = db.Column(db.Text, nullable=True)
     frase_botao = db.Column(db.String(50), nullable=False)
     imagem = db.Column(db.String(100), nullable=True)
-
+    media_avaliacao = db.Column(db.Float, default=5.0)
+    total_avaliacoes = db.Column(db.Integer, default=0)
     def __repr__(self):
         return f'<Produto {self.nome}>'
 
