@@ -30,7 +30,7 @@
                     </div>
 
                     <!-- Barra de pesquisa -->
-                    <form class="barra-pesquisa" action="{{ url_for('delivery') }}" method="GET">
+                    <form class="barra-pesquisa" action="{{ url_for('main.delivery') }}" method="GET">
                         <input type="text" name="q" id="search-input" placeholder="Qual é o tamanho da sua fome?"
                             value="{{ request.args.get('q', '') }}">
                         <button type="submit">🔍</button>
@@ -39,13 +39,13 @@
                     <div class="header-right">
                         <div class="usuario-box">
                             {% if usuario %}
-                            <a href="{{ url_for('perfil') }}">
+                            <a href="{{ url_for('main.perfil') }}">
                                 <img src="{{ url_for('static', filename='img/usuarios/' + usuario.imagem) }}"
                                     alt="Perfil" class="imagem-user">
                                 <span class="status-bola logged-in"></span>
                             </a>
                             {% else %}
-                            <a href="{{ url_for('cadastro') }}">
+                            <a href="{{ url_for('main.cadastro') }}">
                                 <img src="{{ url_for('static', filename='img/user-home.png') }}" alt="Cadastrar"
                                     class="imagem-user">
                                 <span class="status-bola"></span>
@@ -104,7 +104,7 @@
                     </p>
 
                     <!-- Botão Carrinho -->
-                    <form action="{{ url_for('adicionar_carrinho', id=produto.id) }}" method="POST"
+                    <form action="{{ url_for('main.adicionar_carrinho', id=produto.id) }}" method="POST"
                         class="form-carrinho">
                         <button type="submit" class="btn-carrinho">
                             Adicionar

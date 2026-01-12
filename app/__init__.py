@@ -1,35 +1,29 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 import os
 
-app = Flask(__name__)
+db = SQLAlchemy()
+login_manager = LoginManager()
 
+def create_app():
+    app = Flask(__name__)
+    app.secret_key = "kawa"
 
-app.secret_key = "kawa"  
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(BASE_DIR, "..", "confeitaria.db")
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    db.init_app(app)
+    login_manager.init_app(app)
+    login_manager.login_view = 'main.login'
 
+    from app.view import main_bp
+    app.register_blueprint(main_bp)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(BASE_DIR, "confeitaria.db")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    from app import models
 
+    with app.app_context():
+        db.create_all()
 
-# Pasta de produtos
-UPLOAD_FOLDER_PRODUTOS = os.path.join(BASE_DIR, "static/img/produtos")
-os.makedirs(UPLOAD_FOLDER_PRODUTOS, exist_ok=True)
-app.config['UPLOAD_FOLDER_PRODUTOS'] = UPLOAD_FOLDER_PRODUTOS
-
-# Pasta de usuários
-UPLOAD_FOLDER_USUARIOS = os.path.join(BASE_DIR, "static/img/usuarios")
-os.makedirs(UPLOAD_FOLDER_USUARIOS, exist_ok=True)
-app.config['UPLOAD_FOLDER_USUARIOS'] = UPLOAD_FOLDER_USUARIOS
-
-
-db = SQLAlchemy(app)
-
-
-from app import view, models
-
-
-with app.app_context():
-    db.create_all()
+    return app

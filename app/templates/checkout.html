@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+</head>
+<body>
+
+<div class="checkout">
+    <h1>Checkout</h1>
+
+    {% for item in produtos %}
+    <div class="produto">
+        <img src="{{ url_for('static', filename='uploads/produtos/' ~ item.produto.imagem) }}">
+        <div>
+            <strong>{{ item.produto.nome }}</strong><br>
+            {{ item.quantidade }}x R$ {{ item.produto.valor_venda }}
+        </div>
+        <span>R$ {{ item.subtotal }}</span>
+    </div>
+    {% endfor %}
+
+    <h2>Total: R$ {{ total }}</h2>
+
+    <form method="POST">
+        <h3>Pagamento</h3>
+
+        <label>
+            <input type="radio" name="pagamento" value="pix" required>
+            Pix
+        </label><br>
+
+        <label>
+            <input type="radio" name="pagamento" value="cartao">
+            Cartão
+        </label>
+
+        <button type="submit">Finalizar Pedido</button>
+    </form>
+</div>
+
+</body>
+</html>

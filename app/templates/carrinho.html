@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Carrinho</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carrinho.css') }}">
+</head>
+
+<body>
+
+    <div class="carrinho-container">
+        <h1>🛒 Meu Carrinho</h1>
+
+        {% if carrinho %}
+        {% for produto in carrinho %}
+        <div class="produto">
+
+            <img src="{{ url_for('static', filename='img/produtos/' ~ produto.imagem) }}" alt="{{ produto.nome }}"
+                class="produto-img">
+
+            <div class="info">
+                <h3>{{ produto.nome }}</h3>
+                <p>Preço: R$ {{ produto.preco }}</p>
+                <p>Subtotal: R$ {{ produto.subtotal }}</p>
+            </div>
+
+            <div class="quantidade">
+                <form action="{{ url_for('diminuir_quantidade', id=produto.id) }}" method="post">
+                    <button class="btn-qtd">−</button>
+                </form>
+
+                <span>{{ produto.quantidade }}</span>
+
+                <form action="{{ url_for('aumentar_quantidade', id=produto.id) }}" method="post">
+                    <button class="btn-qtd">+</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+
+
+        <div class="total">
+            <h2>Total: R$ {{ tota   l }}</h2>
+        </div>
+        <div class="checkout">
+            <a href="{{ url_for('main.checkout') }}" class="btn-checkout">
+                Comprar agora
+            </a>
+        </div>
+
+        {% else %}
+        <p class="vazio">Seu carrinho está vazio 😢</p>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

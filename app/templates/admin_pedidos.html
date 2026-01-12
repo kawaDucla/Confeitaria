@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pix.css') }}">
+</head>
+<body>
+
+<h1>Pedidos - Admin</h1>
+
+{% for pedido in pedidos %}
+<div style="border:1px solid #ccc;padding:15px;margin-bottom:15px;">
+
+    <strong>Pedido #{{ pedido.id }}</strong><br>
+    Cliente: {{ pedido.usuario.nome if pedido.usuario else 'N/A' }}<br>
+    Total: R$ {{ pedido.total }}<br>
+    Pagamento: {{ pedido.forma_pagamento }}<br>
+    Status: <strong>{{ pedido.status }}</strong><br>
+    Data: {{ pedido.data }}<br>
+
+    <h4>Itens:</h4>
+    <ul>
+        {% for item in pedido.itens %}
+        <li>
+            {{ item.produto_nome }} —
+            {{ item.quantidade }}x —
+            R$ {{ item.subtotal }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST" action="{{ url_for('alterar_status_pedido', id=pedido.id) }}">
+        <select name="status">
+            <option>Aguardando pagamento</option>
+            <option>Pago</option>
+            <option>Em produção</option>
+            <option>Saiu para entrega</option>
+            <option>Entregue</option>
+            <option>Cancelado</option>
+        </select>
+
+        <button type="submit">Atualizar Status</button>
+    </form>
+
+</div>
+{% endfor %}
+
+
+</body>
+</html>

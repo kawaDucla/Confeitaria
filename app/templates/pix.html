@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pix.css') }}">
+</head>
+<body>
+
+<h1>Pagamento Pix</h1>
+
+<p>Pedido #{{ pedido.id }}</p>
+<p>Total: R$ {{ pedido.total }}</p>
+
+<h3>Código Pix:</h3>
+<div style="background:#eee;padding:15px;">
+    {{ codigo_pix }}
+</div>
+
+<p>Após o pagamento, seu pedido será confirmado.</p>
+
+
+</body>
+</html>

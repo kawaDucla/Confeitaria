@@ -1,0 +1,37 @@
+body {
+    font-family: Arial;
+    background: #f5f5f5;
+}
+
+.checkout {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.produto {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.produto img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 8px;
+}

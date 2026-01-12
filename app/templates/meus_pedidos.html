@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/meus_pedidos.css') }}">
+</head>
+<body>
+
+<h1>Meus Pedidos</h1>
+
+{% for pedido in pedidos %}
+<div style="border:1px solid #ccc;padding:15px;margin-bottom:10px;">
+    <strong>Pedido #{{ pedido.id }}</strong><br>
+    Data: {{ pedido.data }}<br>
+    Total: R$ {{ pedido.total }}<br>
+    Status: {{ pedido.status }}<br>
+
+    <ul>
+        {% for item in pedido.itens %}
+        <li>{{ item.produto_nome }} - {{ item.quantidade }}x</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
+
+
+
+</body>
+</html>

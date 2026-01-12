@@ -93,8 +93,8 @@
                     </p>
 
                     <div class="acoes-produto">
-                        <a href="{{ url_for('editar_produto', id=produto.id) }}" class="btn-editar">Editar</a>
-                        <a href="{{ url_for('deletar_produto', id=produto.id) }}" class="btn-deletar"
+                        <a href="{{ url_for('main.editar_produto', id=produto.id) }}" class="btn-editar">Editar</a>
+                        <a href="{{ url_for('main.deletar_produto', id=produto.id) }}" class="btn-deletar"
                             onclick="return confirm('Deseja realmente excluir este produto?');">Excluir</a>
                     </div>
                 </div>
@@ -121,8 +121,8 @@
             <td>{{ usuario.email }}</td>
             <td>{{ usuario.cpf if usuario.cpf else '-' }}</td>
             <td>
-                <a href="{{ url_for('editar_usuario', id=usuario.id) }}">Editar</a> |
-                <a href="{{ url_for('deletar_usuario', id=usuario.id) }}"
+                <a href="{{ url_for('main.editar_usuario', id=usuario.id) }}">Editar</a> |
+                <a href="{{ url_for('main.deletar_usuario', id=usuario.id) }}"
                     onclick="return confirm('Deseja realmente excluir este usuário?');">Excluir</a>
             </td>
         </tr>

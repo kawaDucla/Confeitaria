@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+.carrinho-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.carrinho-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.produto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.info h3 {
+    margin: 0;
+}
+
+.quantidade {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantidade span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn-qtd {
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: #ff6b6b;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-qtd:hover {
+    background: #e55656;
+}
+
+.total {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.vazio {
+    text-align: center;
+    font-size: 18px;
+    color: gray;
+}
+.checkout {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.btn-checkout {
+    background: #2ecc71;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-checkout:hover {
+    background: #27ae60;
+}
